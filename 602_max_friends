@@ -1,0 +1,11 @@
+/* Write your PL/SQL query statement below */
+with first_tab as (select accepter_id as person, count(accepter_id) as count_1
+from RequestAccepted
+group by accepter_id
+union all
+select requester_id as person  , count(requester_id ) as count_1
+from RequestAccepted
+group by requester_id),
+total_friends as (select person as id ,sum(count_1) as num from first_tab group by person)
+select id , num from total_friends
+where num = (select max(num) from total_friends);
