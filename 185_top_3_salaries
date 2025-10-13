@@ -1,0 +1,3 @@
+select d as department ,name as Employee, salary from  (select dense_rank()over(partition by e.departmentid order by e.salary desc ) as r , d.name as d ,e.name,e.salary from employee e,department d
+where 
+d.id=e.departmentid) where r<=3;
