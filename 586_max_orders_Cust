@@ -1,0 +1,5 @@
+/* Write your PL/SQL query statement below */
+with max_customer_list as (select customer_number, count(1) as total_orders  from orders
+group by customer_number)
+select customer_number from max_customer_list where 
+total_orders in (select max(total_orders) from max_customer_list)
