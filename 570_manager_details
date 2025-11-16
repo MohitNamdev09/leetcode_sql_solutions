@@ -2,4 +2,4 @@
 
 with manager_detail as (select managerid from employee group by managerId having count(1)>4)
 select e.name from employee e join manager_detail md 
-on e.id = md.managerid
+on e.id = md.managerid;
