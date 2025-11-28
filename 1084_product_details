@@ -1,5 +1,3 @@
-/* Write your PL/SQL query statement below */
-
 with first_quater_s as (select p.product_id  from Sales s join Product  p on s.product_id  = p.product_id where s.sale_date between '2019-01-01' and '2019-03-31'),
 other_quaters_p as (select p.product_id  from Sales s join Product  p on s.product_id  = p.product_id  where s.sale_date < '2019-01-01' or  s.sale_date >'2019-03-31')
 ,unique_p as ( select product_id  from first_quater_s minus select product_id  from other_quaters_p  )
