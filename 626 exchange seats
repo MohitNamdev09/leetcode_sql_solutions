@@ -5,4 +5,4 @@ select
     else id end as id,
     student
 from Seat
-order by id
+order by id;
