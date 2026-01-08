@@ -1,0 +1,3 @@
+select pr.project_id, round(sum(em.experience_years)/count(em.name),2) as average_years from project pr join Employee em
+on pr.employee_id = em.employee_id
+group by pr.project_id;
