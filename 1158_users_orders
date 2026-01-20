@@ -1,0 +1,5 @@
+select us.user_id as buyer_id, to_char(us.join_Date,'yyyy-mm-dd') as join_date, nvl(count(buyer_id),0) as orders_in_2019 
+from users us left outer join orders ord
+on  us.user_id= ord.buyer_id 
+and ord.order_Date>='2019-01-01'
+group by us.user_id, us.join_Date
