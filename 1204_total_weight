@@ -1,0 +1,6 @@
+with total_weight_Result as (select q.turn, q.Person_id as id,q.person_name, q.weight,
+sum(weight) over(order by turn )
+ as total_weight from queue q)
+ select person_name from total_Weight_Result
+ where turn = (select max(turn) from total_Weight_Result
+ where total_weight <=1000)
