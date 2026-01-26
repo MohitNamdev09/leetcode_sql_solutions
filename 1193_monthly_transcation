@@ -1,0 +1,4 @@
+with  approved_table as(select * from transactions where state='approved')
+select to_char(tra.trans_date,'yyyy-mm') as month, tra.country,count(tra.id) as trans_Count, nvl(count(at.id),0) as approved_count , sum (tra.amount) as trans_total_amount, sum(nvl(at.amount,0)) as approved_total_amount from transactions tra left join approved_table at
+on tra.id = at.id
+group by to_char(tra.trans_date,'yyyy-mm'), tra.country
