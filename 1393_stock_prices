@@ -1,0 +1,12 @@
+/* Write your PL/SQL query statement below */
+
+with buy_stocks as (
+select stock_name, sum(price) as buy_p from stocks 
+where operation = 'Buy'
+group by stock_name),
+sell_stocks as (
+    select stock_name, sum(price) as sell_p from stocks 
+where operation = 'Sell'
+group by stock_name)
+
+select b.stock_name ,s.sell_p -b.buy_p as capital_gain_loss from buy_stocks b join sell_stocks s on b.stock_name = s.stock_name
